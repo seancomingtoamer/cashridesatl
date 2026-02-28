@@ -3,10 +3,10 @@ import {
   DollarSign,
   Shield,
   MapPin,
-  ArrowRight,
-  Clock,
   CheckCircle,
 } from "lucide-react";
+import { RiderForm } from "@/components/rider-form";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 export default function RidersPage() {
   return (
@@ -19,111 +19,96 @@ export default function RidersPage() {
           </h1>
           <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
             Skip the apps. Skip the surge pricing. Connect directly with
-            verified local drivers in our Telegram community.
+            verified local drivers who know Atlanta.
           </p>
           <p className="text-gray-400 mb-10">
-            Always free for riders. No downloads. No accounts. Just ask.
-          </p>
-
-          <a
-            href="https://t.me/+b3_v1rIaub82NzVh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-black font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105"
-          >
-            Join the Telegram Group <ArrowRight size={20} />
-          </a>
-          <p className="text-gray-400 text-sm mt-4">
-            Free to join. Post your ride request anytime.
+            Always free for riders. Sign up and we&apos;ll send you the invite.
           </p>
         </div>
       </section>
 
-      {/* How to Request */}
-      <section className="py-20 px-4 bg-[#111111]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-14">
-            How to Request a Ride
-          </h2>
+      {/* Two Column: Form + Info */}
+      <section className="px-4 pb-20">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          {/* Signup Form */}
+          <div>
+            <RiderForm />
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mx-auto mb-5">
-                <MessageCircle className="text-green" size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                1. Join Telegram
-              </h3>
-              <p className="text-gray-400">
-                Click the link above to join our free community group. Takes 10
-                seconds.
-              </p>
+          {/* How It Works */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-6">
+                How It Works
+              </h2>
             </div>
 
-            <div className="text-center">
-              <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mx-auto mb-5">
-                <MapPin className="text-green" size={28} />
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-green text-black rounded-full flex items-center justify-center shrink-0 text-lg font-bold">
+                1
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                2. Post Your Request
-              </h3>
-              <p className="text-gray-400">
-                Share where you&apos;re going, when, and how many riders. Use
-                the posting format below.
-              </p>
+              <div>
+                <h3 className="text-white font-bold mb-1">Sign Up Here</h3>
+                <p className="text-gray-400 text-sm">
+                  Fill out the form with your info. Takes 30 seconds.
+                </p>
+              </div>
             </div>
 
-            <div className="text-center">
-              <div className="w-14 h-14 bg-green/10 rounded-xl flex items-center justify-center mx-auto mb-5">
-                <DollarSign className="text-green" size={28} />
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-green text-black rounded-full flex items-center justify-center shrink-0 text-lg font-bold">
+                2
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                3. Pay Cash
+              <div>
+                <h3 className="text-white font-bold mb-1">Check Your Email</h3>
+                <p className="text-gray-400 text-sm">
+                  You&apos;ll get a welcome email with the Telegram group invite link.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-green text-black rounded-full flex items-center justify-center shrink-0 text-lg font-bold">
+                3
+              </div>
+              <div>
+                <h3 className="text-white font-bold mb-1">Post Your Ride Request</h3>
+                <p className="text-gray-400 text-sm">
+                  Drop your pickup, destination, and time in the group. A verified driver will respond.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-green text-black rounded-full flex items-center justify-center shrink-0 text-lg font-bold">
+                4
+              </div>
+              <div>
+                <h3 className="text-white font-bold mb-1">Pay Cash</h3>
+                <p className="text-gray-400 text-sm">
+                  Agree on price with your driver. Pay cash. No app fees. No surge.
+                </p>
+              </div>
+            </div>
+
+            {/* Posting Template */}
+            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/10">
+              <h3 className="text-green font-bold text-sm uppercase tracking-wider mb-4">
+                Ride Request Format
               </h3>
-              <p className="text-gray-400">
-                A verified driver responds. Agree on price. Pay cash. No app
-                fees. No surge.
+              <div className="font-mono text-sm text-gray-300 space-y-1">
+                <p><span className="text-gray-500">From:</span> [Pickup location]</p>
+                <p><span className="text-gray-500">To:</span> [Destination]</p>
+                <p><span className="text-gray-500">When:</span> [Date & time]</p>
+                <p><span className="text-gray-500">Riders:</span> [Number of people]</p>
+                <p><span className="text-gray-500">Budget:</span> [What you can pay]</p>
+                <p><span className="text-gray-500">Contact:</span> [Phone or DM]</p>
+              </div>
+              <p className="text-gray-400 text-xs mt-3">
+                Use this template in the Telegram group for fastest response.
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Posting Template */}
-      <section className="py-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-10">
-            Ride Request Format
-          </h2>
-          <div className="bg-[#1f1f1f] rounded-2xl p-8 border border-white/10 font-mono text-sm">
-            <div className="text-green mb-1">RIDE REQUEST</div>
-            <div className="text-gray-300 space-y-1">
-              <p>
-                <span className="text-gray-400">From:</span> [Pickup location]
-              </p>
-              <p>
-                <span className="text-gray-400">To:</span> [Destination]
-              </p>
-              <p>
-                <span className="text-gray-400">When:</span> [Date & time]
-              </p>
-              <p>
-                <span className="text-gray-400">Riders:</span> [Number of
-                people]
-              </p>
-              <p>
-                <span className="text-gray-400">Budget:</span> [What you can
-                pay]
-              </p>
-              <p>
-                <span className="text-gray-400">Contact:</span> [Phone or DM]
-              </p>
-            </div>
-          </div>
-          <p className="text-gray-400 text-sm text-center mt-4">
-            Copy this template when posting in the Telegram group. The more
-            detail, the faster you get a driver.
-          </p>
         </div>
       </section>
 
@@ -196,17 +181,9 @@ export default function RidersPage() {
             Get Your Next Ride
           </h2>
           <p className="text-gray-400 mb-8">
-            Join the Telegram group, post your request, and a verified driver
-            will respond. It&apos;s that simple.
+            Sign up above and check your email for the Telegram invite. Your first ride is minutes away.
           </p>
-          <a
-            href="https://t.me/+b3_v1rIaub82NzVh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-black font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105"
-          >
-            Join Telegram — Free <ArrowRight size={20} />
-          </a>
+          <ScrollToTop label="Sign Up — Free" />
         </div>
       </section>
     </div>

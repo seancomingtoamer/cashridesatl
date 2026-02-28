@@ -5,9 +5,10 @@ import {
   TrendingUp,
   Star,
   CheckCircle,
-  ArrowRight,
   Clock,
 } from "lucide-react";
+import { DriverForm } from "@/components/driver-form";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const STRIPE_PAYMENT_LINK = "#"; // TODO: Replace with Stripe payment link
 
@@ -35,131 +36,96 @@ export default function DriversPage() {
         </div>
       </section>
 
-      {/* Pricing Card */}
+      {/* Two Column: Form + Benefits */}
       <section className="px-4 pb-20">
-        <div className="max-w-lg mx-auto">
-          <div className="bg-gradient-to-b from-[#1f1f1f] to-[#161616] rounded-3xl border border-green/20 overflow-hidden shadow-2xl shadow-green/5">
-            <div className="bg-green/10 px-8 py-4 border-b border-green/20">
-              <div className="flex items-center justify-between">
-                <span className="text-green font-bold text-sm uppercase tracking-wider">
-                  Founding Driver Membership
-                </span>
-                <span className="bg-green text-black text-xs font-bold px-3 py-1 rounded-full">
-                  BETA
-                </span>
-              </div>
-            </div>
-
-            <div className="px-8 py-10">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-5xl font-black text-white">$5</span>
-                <span className="text-gray-400 text-lg">/month</span>
-              </div>
-              <p className="text-gray-400 text-sm mb-1">
-                Founding rate. Increases to{" "}
-                <span className="text-white font-medium">$12/mo</span> after
-                beta.
-              </p>
-              <p className="text-green text-sm font-medium mb-8">
-                Lock in your rate today.
-              </p>
-
-              <div className="space-y-4 mb-10">
-                {[
-                  {
-                    icon: Mail,
-                    title: "Instant Ride Alerts",
-                    desc: "Every ride request sent to your email as it comes in",
-                  },
-                  {
-                    icon: BadgeCheck,
-                    title: "Verified Driver Badge",
-                    desc: "Build trust with riders — they know you're legit",
-                  },
-                  {
-                    icon: TrendingUp,
-                    title: "Priority Listing",
-                    desc: "Featured on our website for riders to find you",
-                  },
-                  {
-                    icon: Shield,
-                    title: "Verified Network",
-                    desc: "Only paid, vetted members get ride dispatch",
-                  },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-green/10 rounded-lg flex items-center justify-center shrink-0">
-                      <item.icon className="text-green" size={20} />
-                    </div>
-                    <div>
-                      <div className="text-white font-medium">{item.title}</div>
-                      <div className="text-gray-400 text-sm">{item.desc}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <a
-                href={STRIPE_PAYMENT_LINK}
-                className="block w-full bg-green hover:bg-green-dark text-black font-bold py-4 rounded-xl text-lg text-center transition-all hover:scale-[1.02]"
-              >
-                Join Now — $5/mo
-              </a>
-
-              <p className="text-gray-400 text-xs text-center mt-4">
-                Cancel anytime. Secure payment via Stripe.
-              </p>
-            </div>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          {/* Signup Form */}
+          <div>
+            <DriverForm />
           </div>
-        </div>
-      </section>
 
-      {/* How Onboarding Works */}
-      <section className="py-20 px-4 bg-[#111111]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-14">
-            How to Get Started
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green text-black rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                1
-              </div>
-              <h3 className="text-white font-bold mb-2">Pay Membership</h3>
-              <p className="text-gray-400 text-sm">
-                Click the join button above. Secure checkout through Stripe.
-                $5/mo founding rate.
+          {/* Benefits + Upgrade Info */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-6">
+                Sign Up Free, Then Upgrade
+              </h2>
+              <p className="text-gray-400 mb-6">
+                Every driver starts with a free signup. Once you&apos;re in, upgrade to
+                <span className="text-green font-medium"> Verified Driver</span> status
+                for $5/mo to unlock ride dispatch and priority listing.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green text-black rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                2
+            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-white font-bold">Free Driver</span>
+                <span className="text-gray-400 text-sm">$0</span>
               </div>
-              <h3 className="text-white font-bold mb-2">Get Verified</h3>
-              <p className="text-gray-400 text-sm">
-                We&apos;ll confirm your payment and add you to the verified
-                driver network within 24 hours.
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={14} className="text-green" />
+                  Community Telegram access
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={14} className="text-green" />
+                  See ride requests in group chat
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-green/20 relative">
+              <div className="absolute -top-3 right-4">
+                <span className="bg-green text-black text-xs font-bold px-3 py-1 rounded-full">
+                  RECOMMENDED
+                </span>
+              </div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-white font-bold">Verified Driver</span>
+                <span className="text-green font-bold">$5/mo</span>
+              </div>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={14} className="text-green" />
+                  Everything in Free
+                </li>
+                <li className="flex items-center gap-2">
+                  <Mail size={14} className="text-green" />
+                  Instant ride alerts to your email
+                </li>
+                <li className="flex items-center gap-2">
+                  <BadgeCheck size={14} className="text-green" />
+                  Verified driver badge
+                </li>
+                <li className="flex items-center gap-2">
+                  <TrendingUp size={14} className="text-green" />
+                  Priority listing on website
+                </li>
+                <li className="flex items-center gap-2">
+                  <Shield size={14} className="text-green" />
+                  Verified network access
+                </li>
+              </ul>
+              <p className="text-xs text-gray-400 mt-4">
+                Founding rate. Increases to $12/mo after beta. Lock it in now.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green text-black rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                3
-              </div>
-              <h3 className="text-white font-bold mb-2">Start Earning</h3>
-              <p className="text-gray-400 text-sm">
-                Ride requests go straight to your email. Accept what works for
-                you. Keep 100% of every fare.
-              </p>
+            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
+              <h3 className="text-white font-bold mb-3">How it works:</h3>
+              <ol className="space-y-2 text-sm text-gray-400 list-decimal list-inside">
+                <li>Sign up free with the form</li>
+                <li>Get your welcome email with Telegram invite</li>
+                <li>Upgrade link in your email to go Verified ($5/mo)</li>
+                <li>Start getting ride alerts + verified badge</li>
+              </ol>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-[#111111]">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-14">
             Common Questions
@@ -203,7 +169,7 @@ export default function DriversPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[#0a0a0a] to-[#0f1a0f]">
+      <section className="py-20 px-4 bg-gradient-to-b from-[#111111] to-[#0f1a0f]">
         <div className="max-w-2xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 text-gold mb-4">
             <Clock size={20} />
@@ -215,14 +181,9 @@ export default function DriversPage() {
             Lock In $5/mo Before It&apos;s $12
           </h2>
           <p className="text-gray-400 mb-8">
-            Join now and keep the founding rate as long as you&apos;re a member.
+            Sign up free above, then upgrade to Verified in your welcome email. Founding members keep $5/mo for life.
           </p>
-          <a
-            href={STRIPE_PAYMENT_LINK}
-            className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-black font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105"
-          >
-            Become a Verified Driver <ArrowRight size={20} />
-          </a>
+          <ScrollToTop label="Sign Up Now" />
         </div>
       </section>
     </div>
