@@ -10,7 +10,7 @@ import {
 import { DriverForm } from "@/components/driver-form";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
-const STRIPE_PAYMENT_LINK = "#"; // TODO: Replace with Stripe payment link
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/6oU9AT77z7rW2pK4zY2go04";
 
 export default function DriversPage() {
   return (
