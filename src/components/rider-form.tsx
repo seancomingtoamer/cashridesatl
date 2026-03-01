@@ -4,16 +4,14 @@ import { useState } from "react";
 import { CheckCircle, Loader2 } from "lucide-react";
 
 const NEIGHBORHOODS = [
-  "Downtown / Midtown",
-  "Buckhead",
-  "West End / SWATS",
-  "East Atlanta / EAV",
-  "College Park / East Point",
-  "Decatur / Stone Mountain",
-  "Sandy Springs / Dunwoody",
-  "Marietta / Smyrna",
-  "South Fulton",
-  "Airport (ATL)",
+  "College Park",
+  "Riverdale",
+  "Jonesboro",
+  "Stockbridge",
+  "Covington",
+  "Stone Mountain",
+  "Marietta",
+  "Douglasville",
   "Other",
 ];
 
@@ -159,7 +157,6 @@ export function RiderForm() {
             <option value="Daily">Daily</option>
             <option value="Few times a week">Few times a week</option>
             <option value="Weekly">Weekly</option>
-            <option value="A few times a month">A few times a month</option>
             <option value="Occasionally">Occasionally</option>
           </select>
         </div>
