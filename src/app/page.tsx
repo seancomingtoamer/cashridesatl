@@ -43,31 +43,31 @@ export default function Home() {
           </h1>
 
           <p className="text-xl sm:text-2xl text-gray-300 mb-4 max-w-2xl mx-auto">
-            Atlanta&apos;s Verified Driver Network
+            Atlanta&apos;s Community Ride Network
           </p>
           <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
-            Real drivers. Real community. No middleman. Connect directly with
-            verified local drivers who know ATL.
+            No apps. No surge pricing. Just real Atlanta drivers and riders
+            connecting directly. Pay cash, Zelle, or CashApp.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/drivers"
+              href="/riders"
               className="bg-green hover:bg-green-dark text-black font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105 flex items-center justify-center gap-2"
             >
-              Become a Driver <ArrowRight size={20} />
+              Need a Ride? — Free <ArrowRight size={20} />
             </Link>
             <Link
-              href="/riders"
+              href="/drivers"
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20"
             >
-              Need a Ride?
+              Drive &amp; Earn
             </Link>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-2 text-green text-sm font-medium">
+          <div className="mt-8 flex items-center justify-center gap-2 text-gray-400 text-sm">
             <Shield size={16} />
-            <span>Founding Member Rate: $5/mo (increases to $12 after beta)</span>
+            <span>Free for riders. Drivers start free, upgrade to Verified for $5/mo.</span>
           </div>
         </div>
       </section>
@@ -129,36 +129,56 @@ export default function Home() {
       <section className="py-20 px-4 bg-[#111111]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-14">
-            Why Drivers Choose Cash Rides ATL
+            Why Atlanta Chooses Cash Rides
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {[
-              "Keep 100% of your fares — no commissions",
-              "Instant ride alerts sent to your email",
-              "Verified driver badge for trust and credibility",
-              "Cash payments — get paid same day",
-              "No app downloads or complicated onboarding",
-              "Growing community of Atlanta riders",
-              "Priority listing on our website",
-              "Founding member rate locked in",
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <CheckCircle
-                  className="text-green shrink-0 mt-0.5"
-                  size={20}
-                />
-                <span className="text-gray-300">{item}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <div>
+              <h3 className="text-xl font-bold text-green mb-4">For Riders</h3>
+              <div className="space-y-3">
+                {[
+                  "Always free — no rider fees ever",
+                  "No surge pricing, no matter when",
+                  "Pay cash, Zelle, or CashApp",
+                  "Verified local drivers who know ATL",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle className="text-green shrink-0 mt-0.5" size={20} />
+                    <span className="text-gray-300">{item}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-green mb-4">For Drivers</h3>
+              <div className="space-y-3">
+                {[
+                  "Keep 100% of your fares — no commissions",
+                  "Instant ride alerts to your email",
+                  "Cash payments — get paid same day",
+                  "No app downloads or onboarding",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle className="text-green shrink-0 mt-0.5" size={20} />
+                    <span className="text-gray-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
             <Link
-              href="/drivers"
+              href="/riders"
               className="bg-green hover:bg-green-dark text-black font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105 inline-flex items-center gap-2"
             >
-              Join as a Driver <ArrowRight size={20} />
+              Get a Ride <ArrowRight size={20} />
+            </Link>
+            <Link
+              href="/drivers"
+              className="bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20 inline-flex items-center gap-2"
+            >
+              Start Driving <ArrowRight size={20} />
             </Link>
           </div>
         </div>
@@ -173,7 +193,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div>
-              <div className="text-4xl font-black text-green mb-2">17+</div>
+              <div className="text-4xl font-black text-green mb-2">18+</div>
               <div className="text-gray-400">Community Members</div>
             </div>
             <div>
@@ -201,16 +221,16 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/drivers"
+              href="/riders"
               className="bg-green hover:bg-green-dark text-black font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105"
             >
-              Driver Membership — $5/mo
+              Request a Ride — Free
             </Link>
             <Link
-              href="/riders"
+              href="/drivers"
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20"
             >
-              Request a Ride — Free
+              Drive &amp; Earn
             </Link>
           </div>
         </div>
