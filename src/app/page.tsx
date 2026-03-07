@@ -155,7 +155,7 @@ export default function Home() {
                 {[
                   "Keep 100% of your fares — no commissions",
                   "Instant ride alerts to your email",
-                  "Cash payments — get paid same day",
+                  "Cash, Zelle, or CashApp — get paid same day",
                   "No app downloads or onboarding",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
