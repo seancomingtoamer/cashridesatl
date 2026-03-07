@@ -72,9 +72,9 @@ export default function RidersPage() {
                 3
               </div>
               <div>
-                <h3 className="text-white font-bold mb-1">Post Your Ride Request</h3>
+                <h3 className="text-white font-bold mb-1">Post Your Ride</h3>
                 <p className="text-gray-400 text-sm">
-                  Drop your pickup, destination, and time in the group. A verified driver will respond.
+                  Drop where you&apos;re going and when. That&apos;s it. A driver will hit you up.
                 </p>
               </div>
             </div>
@@ -84,9 +84,9 @@ export default function RidersPage() {
                 4
               </div>
               <div>
-                <h3 className="text-white font-bold mb-1">Pay Cash</h3>
+                <h3 className="text-white font-bold mb-1">Ride &amp; Pay</h3>
                 <p className="text-gray-400 text-sm">
-                  Agree on price with your driver. Pay cash. No app fees. No surge.
+                  Agree on price with your driver. Pay cash, Zelle, or CashApp. No app fees. No surge.
                 </p>
               </div>
             </div>
@@ -94,18 +94,14 @@ export default function RidersPage() {
             {/* Posting Template */}
             <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/10">
               <h3 className="text-green font-bold text-sm uppercase tracking-wider mb-4">
-                Ride Request Format
+                Drop your ride request
               </h3>
               <div className="font-mono text-sm text-gray-300 space-y-1">
-                <p><span className="text-gray-500">From:</span> [Pickup location]</p>
-                <p><span className="text-gray-500">To:</span> [Destination]</p>
-                <p><span className="text-gray-500">When:</span> [Date & time]</p>
-                <p><span className="text-gray-500">Riders:</span> [Number of people]</p>
-                <p><span className="text-gray-500">Budget:</span> [What you can pay]</p>
-                <p><span className="text-gray-500">Contact:</span> [Phone or DM]</p>
+                <p>\ud83d\udccd From \u2192 To</p>
+                <p>\ud83d\udd50 When</p>
               </div>
               <p className="text-gray-400 text-xs mt-3">
-                Use this template in the Telegram group for fastest response.
+                That&apos;s it. Post in the group, a driver will hit you up.
               </p>
             </div>
           </div>
