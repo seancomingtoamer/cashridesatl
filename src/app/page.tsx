@@ -65,10 +65,9 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-2 text-gray-400 text-sm">
-            <Shield size={16} />
-            <span>Free for riders. Drivers start free, upgrade to Verified for $5/mo.</span>
-          </div>
+          <p className="mt-8 text-gray-400 text-sm text-center">
+            Free for riders. Drivers start free, upgrade to Verified for $5/mo.
+          </p>
         </div>
       </section>
 
