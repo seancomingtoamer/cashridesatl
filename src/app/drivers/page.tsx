@@ -109,6 +109,14 @@ export default function DriversPage() {
               <p className="text-xs text-gray-400 mt-4">
                 Founding rate. Increases to $12/mo after beta. Lock it in now.
               </p>
+              <a
+                href={STRIPE_PAYMENT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 block w-full text-center bg-green text-black font-bold py-3 px-6 rounded-xl hover:bg-green/90 transition-colors"
+              >
+                Go Verified — $5/mo
+              </a>
             </div>
 
             <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
@@ -181,9 +189,20 @@ export default function DriversPage() {
             Lock In $5/mo Before It&apos;s $12
           </h2>
           <p className="text-gray-400 mb-8">
-            Sign up free above, then upgrade to Verified in your welcome email. Founding members keep $5/mo for life.
+            Founding members keep $5/mo for life. Start free or go Verified now.
           </p>
-          <ScrollToTop label="Sign Up Now" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <ScrollToTop label="Sign Up Free" />
+            <a
+              href={STRIPE_PAYMENT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-green text-black font-bold py-3 px-8 rounded-xl hover:bg-green/90 transition-colors"
+            >
+              <BadgeCheck size={18} />
+              Go Verified — $5/mo
+            </a>
+          </div>
         </div>
       </section>
     </div>
