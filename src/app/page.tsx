@@ -117,7 +117,7 @@ export default function Home() {
                 3. Connect Directly
               </h3>
               <p className="text-gray-400">
-                Driver and rider connect directly. Cash payment. No app fees. No
+                Driver and rider connect directly. Pay cash, Zelle, or CashApp. No app fees. No
                 surge pricing.
               </p>
             </div>
