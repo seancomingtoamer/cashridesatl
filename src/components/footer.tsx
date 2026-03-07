@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/logo.jpg"
+                src="/logo.png"
                 alt="Cash Rides ATL"
                 width={32}
                 height={32}

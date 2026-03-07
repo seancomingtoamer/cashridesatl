@@ -28,7 +28,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center pt-20">
           <div className="mb-6">
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Cash Rides ATL"
               width={120}
               height={120}
