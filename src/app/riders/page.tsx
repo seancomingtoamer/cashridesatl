@@ -97,8 +97,8 @@ export default function RidersPage() {
                 Drop your ride request
               </h3>
               <div className="font-mono text-sm text-gray-300 space-y-1">
-                <p>\ud83d\udccd From \u2192 To</p>
-                <p>\ud83d\udd50 When</p>
+                <p>📍 From → To</p>
+                <p>🕐 When</p>
               </div>
               <p className="text-gray-400 text-xs mt-3">
                 That&apos;s it. Post in the group, a driver will hit you up.
