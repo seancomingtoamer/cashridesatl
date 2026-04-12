@@ -7,7 +7,9 @@ import {
   Zap,
   CheckCircle,
   ArrowRight,
+  Star,
 } from "lucide-react";
+import { SpotlightDrivers } from "@/components/spotlight-drivers";
 
 export default function Home() {
   return (
@@ -203,6 +205,33 @@ export default function Home() {
               <div className="text-4xl font-black text-green mb-2">$0</div>
               <div className="text-gray-400">Commission on Fares</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Spotlight Drivers */}
+      <section className="py-20 px-4 bg-[#0a0a0a]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-green/10 text-green px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Star size={16} />
+              Spotlight Drivers
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+              Meet Our Verified Drivers
+            </h2>
+            <p className="text-gray-400 max-w-lg mx-auto">
+              Personally vetted Atlanta drivers ready to get you where you need to go.
+            </p>
+          </div>
+          <SpotlightDrivers />
+          <div className="text-center mt-8">
+            <Link
+              href="/drivers/meet"
+              className="inline-flex items-center gap-2 text-green hover:underline font-medium"
+            >
+              See all drivers <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

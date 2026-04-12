@@ -6,11 +6,11 @@ import {
   Star,
   CheckCircle,
   Clock,
+  ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 import { DriverForm } from "@/components/driver-form";
 import { ScrollToTop } from "@/components/scroll-to-top";
-
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/6oU9AT77z7rW2pK4zY2go04";
 
 export default function DriversPage() {
   return (
@@ -30,8 +30,19 @@ export default function DriversPage() {
             Join Atlanta&apos;s verified driver network. Get ride requests sent
             straight to your inbox. Keep every dollar you earn.
           </p>
-          <p className="text-gray-400 mb-10">
+          <p className="text-gray-400 mb-6">
             No app. No commission. No boss. Just you and the road.
+          </p>
+          <Link
+            href="/drivers/verify"
+            className="inline-flex items-center gap-2 bg-green hover:bg-green-dark text-black font-bold px-6 py-3 rounded-xl transition-colors"
+          >
+            <Shield size={18} />
+            Start Driver Spotlight — $5/mo
+            <ArrowRight size={16} />
+          </Link>
+          <p className="text-gray-500 text-sm mt-3">
+            Verification required. Upload docs → subscribe → go live.
           </p>
         </div>
       </section>
@@ -48,50 +59,30 @@ export default function DriversPage() {
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-white mb-6">
-                Sign Up Free, Then Upgrade
+                Driver Spotlight — Launching Now
               </h2>
               <p className="text-gray-400 mb-6">
-                Every driver starts with a free signup. Once you&apos;re in, upgrade to
-                <span className="text-green font-medium"> Verified Driver</span> status
-                for $5/mo to unlock ride dispatch and priority listing.
+                One paid product, one clear path. Upload your documents at the
+                <span className="text-green font-medium"> verification portal</span>,
+                subscribe to Driver Spotlight for $5/mo, and once Sean approves your
+                docs your featured listing goes live on Meet the Drivers.
               </p>
             </div>
 
-            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-white font-bold">Free Driver</span>
-                <span className="text-gray-400 text-sm">$0</span>
-              </div>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={14} className="text-green" />
-                  Community Telegram access
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={14} className="text-green" />
-                  See ride requests in group chat
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-green/20 relative">
+            <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-green/30 relative">
               <div className="absolute -top-3 right-4">
                 <span className="bg-green text-black text-xs font-bold px-3 py-1 rounded-full">
-                  RECOMMENDED
+                  FOUNDING RATE
                 </span>
               </div>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-white font-bold">Verified Driver</span>
-                <span className="text-green font-bold">$5/mo</span>
+                <span className="text-white font-bold text-lg">Driver Spotlight</span>
+                <span className="text-green font-bold text-xl">$5/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-gray-300">
                 <li className="flex items-center gap-2">
-                  <CheckCircle size={14} className="text-green" />
-                  Everything in Free
-                </li>
-                <li className="flex items-center gap-2">
-                  <Mail size={14} className="text-green" />
-                  Instant ride alerts to your email
+                  <Shield size={14} className="text-green" />
+                  Full document verification (required)
                 </li>
                 <li className="flex items-center gap-2">
                   <BadgeCheck size={14} className="text-green" />
@@ -99,34 +90,44 @@ export default function DriversPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <TrendingUp size={14} className="text-green" />
-                  Priority listing on website
+                  Featured Spotlight placement on Meet the Drivers
                 </li>
                 <li className="flex items-center gap-2">
-                  <Shield size={14} className="text-green" />
-                  Verified network access
+                  <Mail size={14} className="text-green" />
+                  Instant ride alerts to your email
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={14} className="text-green" />
+                  Keep 100% of every fare — no commissions
                 </li>
               </ul>
               <p className="text-xs text-gray-400 mt-4">
                 Founding rate. Increases to $12/mo after beta. Lock it in now.
               </p>
-              <a
-                href={STRIPE_PAYMENT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/drivers/verify"
                 className="mt-4 block w-full text-center bg-green text-black font-bold py-3 px-6 rounded-xl hover:bg-green/90 transition-colors"
               >
-                Go Verified — $5/mo
-              </a>
+                Start Verification → Get Spotlight
+              </Link>
+              <p className="text-[11px] text-gray-500 mt-2 text-center">
+                Docs first, payment second — both required to go live.
+              </p>
             </div>
 
             <div className="bg-[#1f1f1f] rounded-2xl p-6 border border-white/5">
-              <h3 className="text-white font-bold mb-3">How it works:</h3>
+              <h3 className="text-white font-bold mb-3">How Driver Spotlight works:</h3>
               <ol className="space-y-2 text-sm text-gray-400 list-decimal list-inside">
-                <li>Sign up free with the form</li>
-                <li>Get your welcome email with Telegram invite</li>
-                <li>Upgrade link in your email to go Verified ($5/mo)</li>
-                <li>Start getting ride alerts + verified badge</li>
+                <li>Upload license, registration, and insurance at the verification portal</li>
+                <li>Subscribe to Driver Spotlight ($5/mo) on the confirmation screen</li>
+                <li>Sean reviews your docs within 24 hours</li>
+                <li>Your Spotlight listing goes live on Meet the Drivers and ride alerts start flowing</li>
               </ol>
+              <p className="text-xs text-gray-500 mt-4">
+                Prefer to hang out in the free Telegram community first? Drop your info in
+                the form on the left — founding members get grandfathered when the paid
+                community launches.
+              </p>
             </div>
           </div>
         </div>
@@ -189,19 +190,18 @@ export default function DriversPage() {
             Lock In $5/mo Before It&apos;s $12
           </h2>
           <p className="text-gray-400 mb-8">
-            Founding members keep $5/mo for life. Start free or go Verified now.
+            Founding members keep $5/mo for life. Verification required — upload
+            docs, subscribe, and you&apos;re live once Sean approves.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ScrollToTop label="Sign Up Free" />
-            <a
-              href={STRIPE_PAYMENT_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/drivers/verify"
               className="inline-flex items-center justify-center gap-2 bg-green text-black font-bold py-3 px-8 rounded-xl hover:bg-green/90 transition-colors"
             >
               <BadgeCheck size={18} />
-              Go Verified — $5/mo
-            </a>
+              Start Driver Spotlight — $5/mo
+            </Link>
+            <ScrollToTop label="Join Community Waitlist" />
           </div>
         </div>
       </section>

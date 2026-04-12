@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+
+# dev tools + test scripts (contain local secrets)
+/tools/
+
+# loose assets not referenced by code
+/harmony mobile.png
+/mobile cashridersatl.png
+/new cash rides ATL LOGO.png
+
+# local notes
+/notes/
