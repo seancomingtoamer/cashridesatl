@@ -62,7 +62,7 @@ export function SpotlightDrivers() {
               <img
                 src={d.photo}
                 alt={d.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">

@@ -65,7 +65,7 @@ export default async function MeetTheDriversPage() {
                           src={photoUrl}
                           alt={d.Name || "Driver"}
                           fill
-                          className="object-cover"
+                          className="object-cover object-top"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
