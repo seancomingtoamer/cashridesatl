@@ -33,6 +33,12 @@ export function Navbar() {
               Drivers
             </Link>
             <Link
+              href="/drivers/meet"
+              className="text-gray-400 hover:text-green transition-colors font-medium"
+            >
+              Meet the Drivers
+            </Link>
+            <Link
               href="/riders"
               className="text-gray-400 hover:text-green transition-colors font-medium"
             >
@@ -43,12 +49,6 @@ export function Navbar() {
               className="text-gray-400 hover:text-green transition-colors font-medium"
             >
               About
-            </Link>
-            <Link
-              href="/drivers"
-              className="bg-green hover:bg-green-dark text-black font-bold px-5 py-2 rounded-lg transition-colors"
-            >
-              Join Now
             </Link>
           </div>
 
@@ -71,6 +71,13 @@ export function Navbar() {
                 Drivers
               </Link>
               <Link
+                href="/drivers/meet"
+                className="text-gray-400 hover:text-green transition-colors font-medium px-2"
+                onClick={() => setOpen(false)}
+              >
+                Meet the Drivers
+              </Link>
+              <Link
                 href="/riders"
                 className="text-gray-400 hover:text-green transition-colors font-medium px-2"
                 onClick={() => setOpen(false)}
@@ -83,13 +90,6 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
               >
                 About
-              </Link>
-              <Link
-                href="/drivers"
-                className="bg-green hover:bg-green-dark text-black font-bold px-5 py-2 rounded-lg transition-colors text-center"
-                onClick={() => setOpen(false)}
-              >
-                Join Now
               </Link>
             </div>
           </div>
