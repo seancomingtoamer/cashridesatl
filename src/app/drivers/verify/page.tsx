@@ -194,7 +194,7 @@ export default function DriverVerifyPage() {
                 moment Sean approves your docs.
               </p>
               <a
-                href={STRIPE_SPOTLIGHT_LINK}
+                href={`${STRIPE_SPOTLIGHT_LINK}?prefilled_email=${encodeURIComponent(form.email)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-green text-black font-bold py-3 px-6 rounded-xl hover:bg-green/90 transition-colors"
