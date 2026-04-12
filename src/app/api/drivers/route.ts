@@ -20,7 +20,7 @@ export async function GET() {
       bio: r.fields.Personal_Statement ?? "",
       photo: r.fields.Photo?.[0]?.url ?? null,
       vehicleType: r.fields.Vehicle ?? "",
-      serviceZones: r.fields.Service_Zones ?? [],
+      serviceZones: r.fields["Areas Served"] ? r.fields["Areas Served"].split(", ") : [],
       yearsExperience: r.fields.Years_Experience ?? "",
       spotlight: r.fields.Spotlight ?? false,
     }));
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
       Email: email,
       Phone: phone,
       Vehicle: vehicleType,
-      Service_Zones: serviceZones ?? [],
+      "Areas Served": (serviceZones ?? []).join(", "),
       Personal_Statement: personalStatement,
       License_Photo: licenseUrl,
       Registration_Photo: registrationUrl,

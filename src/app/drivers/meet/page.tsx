@@ -93,10 +93,10 @@ export default async function MeetTheDriversPage() {
                         </div>
                       )}
 
-                      {d.Service_Zones && d.Service_Zones.length > 0 && (
+                      {d["Areas Served"] && (
                         <div className="flex items-start gap-1.5 text-gray-400 text-sm mb-3">
                           <MapPin size={14} className="shrink-0 mt-0.5" />
-                          <span>{d.Service_Zones.join(", ")}</span>
+                          <span>{d["Areas Served"]}</span>
                         </div>
                       )}
 

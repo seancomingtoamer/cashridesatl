@@ -175,7 +175,7 @@ export function scoreDriverCompleteness(r: AirtableRecord<DriverFields>): number
   if (f.Name) score += 1;
   if (f.Phone) score += 1;
   if (f.Vehicle) score += 1;
-  if (f["Areas Served"] || (f.Service_Zones && f.Service_Zones.length > 0)) score += 1;
+  if (f["Areas Served"]) score += 1;
   if (f.Personal_Statement || f.Bio) score += 2;
   if (f.Photo && f.Photo.length > 0) score += 2;
   if (f.License_Photo) score += 3;
