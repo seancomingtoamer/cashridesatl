@@ -78,9 +78,9 @@ export async function POST(req: NextRequest) {
       Registration_Photo: registrationUrl,
       Insurance_Photo: insuranceUrl,
       Driving_Record_Photo: drivingRecordUrl,
-      Status: "Submitted",
-      Source: "Website - Driver Verification",
+      Status: "Waitlist",
       Published: false,
+      Admin_Notes: "Verification docs submitted via website. Source: Driver Verification Portal.",
     };
 
     if (photoUrl && /^https?:\/\//.test(photoUrl)) {
