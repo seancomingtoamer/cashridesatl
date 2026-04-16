@@ -1,24 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
+  axes: ["opsz", "SOFT", "WONK"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Cash Rides ATL - Atlanta's Verified Driver Network",
+  title: "Cash Rides ATL — Atlanta Dispatch Bulletin",
   description:
-    "Atlanta's community ride network. Verified drivers, real connections. Join the network trusted by ATL riders and drivers.",
+    "The community ride network for Atlanta. A directory of verified local drivers — no apps, no surge, no middleman. Published from the dispatch desk.",
   keywords: [
     "Atlanta rides",
     "cash rides Atlanta",
@@ -27,9 +36,9 @@ export const metadata: Metadata = {
     "Atlanta transportation",
   ],
   openGraph: {
-    title: "Cash Rides ATL - Atlanta's Verified Driver Network",
+    title: "Cash Rides ATL — Atlanta Dispatch Bulletin",
     description:
-      "Atlanta's community ride network. Verified drivers, real connections.",
+      "The community ride network for Atlanta. A directory of verified local drivers.",
     url: "https://cashridesatl.com",
     siteName: "Cash Rides ATL",
     type: "website",
@@ -58,7 +67,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${fraunces.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <Navbar />
         <main>{children}</main>
