@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { hostname: "v5.airtableusercontent.com" },
-      { hostname: "xxsnqgwlyaczsukxxtpr.supabase.co" },
+      { hostname: "*.public.blob.vercel-storage.com" },
     ],
   },
 };

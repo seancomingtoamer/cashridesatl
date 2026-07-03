@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { uploadDriverDoc, uploadProfilePhoto } from "@/lib/supabase";
+import { uploadDriverDoc, uploadProfilePhoto } from "@/lib/blob";
 
 const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
 const ALLOWED = new Set([
