@@ -190,8 +190,9 @@ export default function DriverVerifyPage() {
                 Lock in your $5/mo Spotlight placement now
               </p>
               <p className="text-gray-400 text-xs mb-4">
-                Founding rate. Subscription activates your featured listing the
-                moment Sean approves your docs.
+                Founding rate. Your personal invite to the drivers&apos; group
+                arrives by email right after payment, and your featured listing
+                activates the moment Sean approves your docs.
               </p>
               <a
                 href={`${STRIPE_SPOTLIGHT_LINK}?prefilled_email=${encodeURIComponent(form.email)}`}

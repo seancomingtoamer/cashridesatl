@@ -94,8 +94,8 @@ export default function DriversPage() {
               </h2>
               <p className="text-ink-soft mb-8 leading-relaxed">
                 Tell us where you drive and when you&rsquo;re out. We&rsquo;ll
-                add you to the free Telegram wire and follow up about
-                verification.
+                get you set up with your $5/mo membership — the drivers’
+                group, ride dispatches, and roster eligibility.
               </p>
               <DriverForm />
             </div>
@@ -174,6 +174,7 @@ export default function DriversPage() {
                   {[
                     "Upload license, registration, and insurance at the verification portal.",
                     "Subscribe to Driver Spotlight ($5/mo) on the confirmation screen.",
+                    "Your personal invite to the drivers\u2019 group arrives by email within a minute.",
                     "Sean reviews your docs within 24 hours.",
                     "Spotlight goes live on the Roster. Ride alerts start flowing.",
                   ].map((step, i) => (
@@ -228,7 +229,7 @@ export default function DriversPage() {
                 },
                 {
                   q: "What if I'm already in the Telegram group?",
-                  a: "The free Telegram wire stays open for community chat and ride requests. The paid membership adds email dispatch, verified status, and priority listing — the tools that actually help you get rides.",
+                  a: "The group is moving to paid driver membership. If you joined as a founding driver, activate your $5/mo membership to keep your spot — you'll be grandfathered at the founding rate. Riders always ride free and keep full group access.",
                 },
                 {
                   q: "Why $5/mo? Will it go up?",

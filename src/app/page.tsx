@@ -104,7 +104,7 @@ export default function Home() {
           </div>
 
           <p className="mt-6 caption text-center">
-            Free for riders &middot; Drivers start free &middot; Spotlight
+            Free for riders &middot; Drivers $5/mo founding rate &middot; Spotlight
             listing $5/mo
           </p>
         </div>
@@ -181,7 +181,7 @@ export default function Home() {
               {
                 n: "01",
                 title: "Join the network",
-                body: "Drivers submit documents for verification. Riders join the free Telegram wire or request rides direct from the site.",
+                body: "Drivers activate a $5/mo membership and can verify docs for the public roster. Riders join the free Telegram wire or request rides direct from the site.",
                 icon: Users,
               },
               {

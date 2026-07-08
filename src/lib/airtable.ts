@@ -112,6 +112,11 @@ export interface DriverFields {
   Featured?: boolean;
   Spotlight?: boolean;
   Admin_Notes?: string;
+  Membership_Status?: string;
+  Stripe_Customer_ID?: string;
+  Membership_Start?: string;
+  Telegram_User_ID?: string;
+  Invite_Link?: string;
 }
 
 export async function listPublishedDrivers() {
