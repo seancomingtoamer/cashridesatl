@@ -1,6 +1,6 @@
 // Paid-membership gatekeeper logic: grant on Stripe payment, revoke on cancel.
 // Kept separate from the webhook route so it can be exercised by test scripts.
-import { createMemberInviteLink, removeMemberFromGroup } from "@/lib/telegram";
+import { createMemberInviteLink, removeMemberFromGroup, revokeInviteLink } from "@/lib/telegram";
 import { sendEmail } from "@/lib/agentmail";
 import { updateDriverRecord, type AirtableRecord, type DriverFields } from "@/lib/airtable";
 
@@ -45,12 +45,23 @@ export async function grantMembership(params: {
   email: string;
   name: string;
   customerId: string;
+  previousInviteLink?: string;
 }): Promise<GrantResult> {
-  const { recordId, email, name, customerId } = params;
+  const { recordId, email, name, customerId, previousInviteLink } = params;
 
   let inviteLink: string | null = null;
   let emailSent = false;
   let error: string | undefined;
+
+  if (previousInviteLink) {
+    // Resubscribe / duplicate payment: kill the old link so only the freshly
+    // emailed one works. Best-effort — an already-used link can't be revoked.
+    try {
+      await revokeInviteLink(previousInviteLink);
+    } catch (e) {
+      console.warn("[membership] could not revoke previous invite link:", e);
+    }
+  }
 
   try {
     inviteLink = await createMemberInviteLink(recordId);
@@ -115,8 +126,18 @@ export async function revokeMembership(
     }
   }
 
+  // Kill an unused invite link so a cancelled-before-joining driver can't
+  // walk in later. Best-effort — used links are already dead (member_limit=1).
+  if (driver.fields.Invite_Link) {
+    try {
+      await revokeInviteLink(driver.fields.Invite_Link);
+    } catch (e) {
+      console.warn("[membership] could not revoke invite link on cancel:", e);
+    }
+  }
+
   try {
-    await updateDriverRecord(driver.id, { Membership_Status: "Expired" });
+    await updateDriverRecord(driver.id, { Membership_Status: "Expired", Invite_Link: "" });
   } catch (e) {
     error = `${error ? error + "; " : ""}airtable expire update failed: ${e instanceof Error ? e.message : e}`;
     console.error("[membership] updateDriverRecord:", e);

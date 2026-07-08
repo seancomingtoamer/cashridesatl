@@ -27,9 +27,14 @@ async function tg<T>(method: string, params: Record<string, unknown>): Promise<T
 export async function createMemberInviteLink(recordId: string): Promise<string> {
   const result = await tg<{ invite_link: string }>("createChatInviteLink", {
     chat_id: GROUP_ID,
-    // Telegram caps invite link names at 32 chars
+    // The name carries the Airtable record ID so the dispatcher can link the
+    // join event back to the record even if the Invite_Link field lookup fails.
+    // Telegram caps invite link names at 32 chars.
     name: `member:${recordId}`.slice(0, 32),
     member_limit: 1,
+    // Unused links die after 7 days — a cancelled-before-joining driver can't
+    // hold an evergreen door key. Fresh links are minted on resubscribe.
+    expire_date: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
   });
   return result.invite_link;
 }

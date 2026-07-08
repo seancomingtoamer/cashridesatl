@@ -12,6 +12,8 @@ import { grantMembership, revokeMembership } from "@/lib/membership";
 // Stripe webhooks must never be cached and always run dynamically.
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+// Headroom for the grant chain (Telegram + Airtable + AgentMail in sequence).
+export const maxDuration = 60;
 
 const NOTIFY_WEBHOOK =
   process.env.CASHRIDES_DRIVER_WEBHOOK ||
@@ -128,15 +130,45 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   const matches = await findDriversByEmail(email);
 
   // Idempotency: if ANY matching record already has this subscription ID in
-  // Admin_Notes, this event is a replay — skip the mutation and the notification.
+  // Admin_Notes, this event is a replay. But the note lands BEFORE the grant,
+  // so a crash between them would leave a paying driver with no invite — on
+  // replay, verify the grant actually completed and self-heal if it didn't.
   const alreadyApplied = matches.find((r) =>
     (r.fields.Admin_Notes || "").includes(subscriptionId)
   );
   if (alreadyApplied) {
-    console.log(
-      `[stripe-webhook] subscription ${subscriptionId} already recorded on ${alreadyApplied.id}, skipping`
+    const granted =
+      alreadyApplied.fields.Membership_Status === "Paid" &&
+      !!alreadyApplied.fields.Invite_Link;
+    if (granted) {
+      console.log(
+        `[stripe-webhook] subscription ${subscriptionId} already recorded on ${alreadyApplied.id}, skipping`
+      );
+      return { ok: true, skipped: "idempotent" };
+    }
+    console.warn(
+      `[stripe-webhook] subscription ${subscriptionId} recorded on ${alreadyApplied.id} but grant incomplete — re-running`
     );
-    return { ok: true, skipped: "idempotent" };
+    const grant = await grantMembership({
+      recordId: alreadyApplied.id,
+      email,
+      name: alreadyApplied.fields.Name || name || email,
+      customerId,
+      previousInviteLink: alreadyApplied.fields.Invite_Link,
+    });
+    await notifySean("stripe-paid-matched", {
+      airtable_id: alreadyApplied.id,
+      review_url: reviewUrl(alreadyApplied.id),
+      email,
+      amount,
+      subscription_id: subscriptionId,
+      customer_id: customerId,
+      invite_link: grant.inviteLink,
+      invite_email_sent: grant.emailSent,
+      membership_error: grant.error,
+      message: `Recovered an incomplete membership grant for ${alreadyApplied.fields.Name || email} on webhook retry.${grant.emailSent ? " Group invite emailed." : ` INVITE EMAIL NOT SENT (${grant.error || "unknown"}) — send manually: ${grant.inviteLink || "link creation failed too"}.`}`,
+    });
+    return { ok: true, action: "grant-recovered", airtableId: alreadyApplied.id };
   }
 
   const note = buildPaymentNote({ subscriptionId, customerId, amount, ts });
@@ -195,11 +227,14 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     Admin_Notes: appendAdminNotes(best.fields.Admin_Notes, note),
   });
 
+  const wasAlreadyPaid = best.fields.Membership_Status === "Paid";
+
   const grant = await grantMembership({
     recordId: best.id,
     email,
     name: best.fields.Name || name || email,
     customerId,
+    previousInviteLink: best.fields.Invite_Link,
   });
 
   await notifySean("stripe-paid-matched", {
@@ -215,7 +250,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     invite_link: grant.inviteLink,
     invite_email_sent: grant.emailSent,
     membership_error: grant.error,
-    message: `Driver membership confirmed for ${best.fields.Name || email}.${grant.emailSent ? " Group invite emailed automatically." : ` INVITE EMAIL NOT SENT (${grant.error || "unknown"}) — send manually: ${grant.inviteLink || "link creation failed too"}.`}${duplicates.length > 0 ? ` WARNING: ${duplicates.length} duplicate row(s) in base — review manually.` : ""}`,
+    message: `Driver membership confirmed for ${best.fields.Name || email}.${grant.emailSent ? " Group invite emailed automatically." : ` INVITE EMAIL NOT SENT (${grant.error || "unknown"}) — send manually: ${grant.inviteLink || "link creation failed too"}.`}${wasAlreadyPaid ? " ⚠️ This driver was ALREADY a paid member — likely a DUPLICATE subscription. Consider refunding one in Stripe." : ""}${duplicates.length > 0 ? ` WARNING: ${duplicates.length} duplicate row(s) in base — review manually.` : ""}`,
   });
 
   return { ok: true, action: "updated", airtableId: best.id };
@@ -258,6 +293,35 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
   }
 
   const note = buildCancelNote({ subscriptionId, customerId, ts });
+
+  // A driver who accidentally double-subscribed has two subscription IDs in
+  // the notes. Cancelling the duplicate must NOT kick them from the group
+  // while the surviving subscription keeps billing.
+  const notes = driver.fields.Admin_Notes || "";
+  const paidSubs = [...notes.matchAll(/Spotlight subscription (sub_\w+)/g)].map((m) => m[1]);
+  const cancelledSubs = [...notes.matchAll(/Spotlight cancelled \(subscription (sub_\w+)/g)].map(
+    (m) => m[1]
+  );
+  const survivors = paidSubs.filter(
+    (id) => id !== subscriptionId && !cancelledSubs.includes(id)
+  );
+
+  if (survivors.length > 0) {
+    await updateDriverRecord(driver.id, {
+      Admin_Notes: appendAdminNotes(driver.fields.Admin_Notes, note),
+    });
+    await notifySean("stripe-cancelled", {
+      airtable_id: driver.id,
+      review_url: reviewUrl(driver.id),
+      email: driver.fields.Email || "",
+      name: driver.fields.Name || "",
+      subscription_id: subscriptionId,
+      customer_id: customerId,
+      surviving_subscriptions: survivors.join(", "),
+      message: `A DUPLICATE subscription (${subscriptionId}) was cancelled for ${driver.fields.Name || driver.fields.Email || driver.id}, but ${survivors.length} other subscription(s) look active (${survivors.join(", ")}). Membership RETAINED — no group removal. Verify in Stripe and refund the duplicate if needed.`,
+    });
+    return { ok: true, action: "duplicate-cancelled", airtableId: driver.id };
+  }
 
   await updateDriverRecord(driver.id, {
     Spotlight: false,
