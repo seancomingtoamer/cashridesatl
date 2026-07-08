@@ -68,7 +68,7 @@ export default function Home() {
           </div>
 
           <p className="mt-8 text-gray-400 text-sm text-center">
-            Free for riders. Drivers start free, upgrade to Verified for $5/mo.
+            Free for riders. Drivers join the network for $5/mo — founding rate.
           </p>
         </div>
       </section>
