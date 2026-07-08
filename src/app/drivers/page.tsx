@@ -81,8 +81,12 @@ export default function DriversPage() {
               </div>
               <ul className="space-y-2 text-sm text-gray-300">
                 <li className="flex items-center gap-2">
+                  <CheckCircle size={14} className="text-green" />
+                  Access to the drivers&apos; community group on Telegram
+                </li>
+                <li className="flex items-center gap-2">
                   <Shield size={14} className="text-green" />
-                  Full document verification (required)
+                  Full document verification (required for listing)
                 </li>
                 <li className="flex items-center gap-2">
                   <BadgeCheck size={14} className="text-green" />
@@ -120,13 +124,14 @@ export default function DriversPage() {
               <ol className="space-y-2 text-sm text-gray-400 list-decimal list-inside">
                 <li>Upload license, registration, and insurance at the verification portal</li>
                 <li>Subscribe to Driver Spotlight ($5/mo) on the confirmation screen</li>
+                <li>Your personal invite to the drivers&apos; group arrives by email within a minute</li>
                 <li>Sean reviews your docs within 24 hours</li>
                 <li>Your Spotlight listing goes live on Meet the Drivers and ride alerts start flowing</li>
               </ol>
               <p className="text-xs text-gray-500 mt-4">
-                Prefer to hang out in the free Telegram community first? Drop your info in
-                the form on the left — founding members get grandfathered when the paid
-                community launches.
+                Not ready to upload docs yet? The form on the left gets you membership
+                first — group access and ride dispatches for $5/mo. You can verify for
+                your public listing whenever you&apos;re ready.
               </p>
             </div>
           </div>
@@ -148,7 +153,7 @@ export default function DriversPage() {
               },
               {
                 q: "What's included in the membership?",
-                a: "Instant ride request email dispatch, a verified driver badge, priority listing on our website, and access to the verified driver network. You keep 100% of every fare — we never take commissions.",
+                a: "Access to the drivers' community group on Telegram, instant ride request email dispatch, a verified driver badge (after doc verification), and priority listing on our website. You keep 100% of every fare — we never take commissions.",
               },
               {
                 q: "Can I cancel anytime?",
@@ -156,7 +161,7 @@ export default function DriversPage() {
               },
               {
                 q: "What if I'm already in the Telegram group?",
-                a: "The free Telegram group stays open for community chat and ride requests. The paid membership adds email dispatch, verified status, and priority listing — the tools that actually help you get rides.",
+                a: "The group is moving to paid driver membership. If you joined as a founding driver, activate your $5/mo membership to keep your spot — you'll be grandfathered at the founding rate. Riders always ride free and keep full group access.",
               },
               {
                 q: "Why $5/mo? Will it go up?",

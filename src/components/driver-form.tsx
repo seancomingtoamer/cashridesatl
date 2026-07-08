@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Loader2, ArrowRight } from "lucide-react";
+
+const STRIPE_MEMBERSHIP_LINK = "https://buy.stripe.com/6oU9AT77z7rW2pK4zY2go04";
 
 const AREAS = [
   "Downtown / Midtown",
@@ -68,13 +70,21 @@ export function DriverForm() {
       <div className="bg-gradient-to-b from-[#1f1f1f] to-[#161616] rounded-3xl border border-green/20 p-10 text-center shadow-2xl shadow-green/5">
         <CheckCircle className="text-green mx-auto mb-4" size={48} />
         <h3 className="text-2xl font-bold text-white mb-3">
-          You&apos;re In!
+          One Last Step
         </h3>
-        <p className="text-gray-300 mb-2">
-          Check your email for next steps and your invite to the community.
+        <p className="text-gray-300 mb-6">
+          Your info is saved. Activate your membership to get your personal
+          invite to the drivers&apos; group and start receiving ride dispatches.
         </p>
-        <p className="text-green text-sm font-medium">
-          Want verified status + ride dispatch? Upgrade info is in your welcome email.
+        <a
+          href={`${STRIPE_MEMBERSHIP_LINK}?prefilled_email=${encodeURIComponent(form.email)}`}
+          className="inline-flex items-center justify-center gap-2 bg-green hover:bg-green-dark text-black font-bold py-4 px-8 rounded-xl text-lg transition-all hover:scale-[1.02]"
+        >
+          Activate Membership — $5/mo
+          <ArrowRight size={18} />
+        </a>
+        <p className="text-gray-400 text-sm mt-4">
+          Your group invite lands in your email right after payment.
         </p>
       </div>
     );
@@ -91,7 +101,7 @@ export function DriverForm() {
             Join the Driver Network
           </span>
           <span className="bg-green text-black text-xs font-bold px-3 py-1 rounded-full">
-            FREE
+            $5/MO
           </span>
         </div>
       </div>
@@ -219,12 +229,13 @@ export function DriverForm() {
               Signing Up...
             </>
           ) : (
-            "Sign Up — Free"
+            "Sign Up → Activate Membership"
           )}
         </button>
 
         <p className="text-gray-400 text-xs text-center">
-          You&apos;ll get a welcome email with the Telegram invite and info about upgrading to Verified Driver status.
+          Membership is $5/mo (founding rate) — drivers&apos; group access, ride
+          dispatches to your email, and roster eligibility. Riders always ride free.
         </p>
       </div>
     </form>
