@@ -1,0 +1,17 @@
+{
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 503,
+      "headers": {
+        "Retry-After": "86400",
+        "Cache-Control": "no-store"
+      }
+    }
+  ]
+}
